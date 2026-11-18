@@ -3,22 +3,20 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-<title>İyi ki doğdun Ecrin 🌹</title>
+<title>İyi ki doğdun Ecrin</title>
 <style>
   @import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400&display=swap');
 
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
   :root {
-    --bg:      #0d0810;
-    --bg2:     #140d1a;
-    --accent:  #c9748a;
-    --accent2: #7c4d6e;
-    --gold:    #c8a97e;
-    --text:    #e8dde6;
-    --muted:   #9a8a96;
-    --border:  rgba(201,116,138,0.18);
-    --input-bg: rgba(255,255,255,0.04);
+    --bg:      #0c0810;
+    --bg2:     #130d19;
+    --accent:  #c46b84;
+    --gold:    #c4a06e;
+    --text:    #ede5eb;
+    --muted:   #9a8896;
+    --border:  rgba(196,107,132,0.16);
   }
 
   html { scroll-behavior: smooth; }
@@ -31,123 +29,133 @@
     overflow-x: hidden;
   }
 
-  /* ── Stars ── */
+  /* Stars */
   .stars {
     position: fixed;
     inset: 0;
     pointer-events: none;
     z-index: 0;
   }
-
   .star {
     position: absolute;
     border-radius: 50%;
     background: white;
     animation: twinkle ease-in-out infinite alternate;
   }
-
   @keyframes twinkle {
-    from { opacity: 0.1; transform: scale(0.8); }
-    to   { opacity: 0.9; transform: scale(1.2); }
+    from { opacity: 0.08; transform: scale(0.8); }
+    to   { opacity: 0.85; transform: scale(1.2); }
   }
 
-  /* ── Layout ── */
+  /* Shooting stars */
+  .shoot {
+    position: fixed;
+    top: 0; left: 0;
+    width: 2px; height: 80px;
+    background: linear-gradient(to bottom, rgba(255,255,255,0.9), transparent);
+    border-radius: 2px;
+    pointer-events: none;
+    z-index: 0;
+    animation: shootDown linear forwards;
+    opacity: 0;
+  }
+  @keyframes shootDown {
+    0%   { opacity: 0; transform: translate(0, 0) rotate(25deg); }
+    10%  { opacity: 1; }
+    90%  { opacity: 0.6; }
+    100% { opacity: 0; transform: translate(300px, 500px) rotate(25deg); }
+  }
+
+  /* Page */
   .page {
     position: relative;
     z-index: 1;
-    max-width: 680px;
+    max-width: 660px;
     margin: 0 auto;
-    padding: 72px 28px 96px;
+    padding: 80px 28px 100px;
   }
 
-  /* ── Hero ── */
+  /* Hero */
   .hero {
     text-align: center;
-    margin-bottom: 80px;
+    margin-bottom: 88px;
     opacity: 0;
-    animation: rise 1.1s cubic-bezier(.22,1,.36,1) 0.2s forwards;
+    animation: rise 1.2s cubic-bezier(.22,1,.36,1) 0.15s forwards;
   }
-
   .hero-eyebrow {
-    font-family: 'Inter', sans-serif;
-    font-weight: 300;
-    font-size: 0.72rem;
-    letter-spacing: 0.35em;
+    font-size: 0.68rem;
+    letter-spacing: 0.38em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 24px;
+    margin-bottom: 22px;
+    font-weight: 300;
   }
-
   .hero-name {
     font-family: 'Cormorant Garamond', serif;
-    font-size: clamp(4rem, 14vw, 7.5rem);
+    font-size: clamp(4.5rem, 15vw, 8rem);
     font-weight: 300;
-    line-height: 0.95;
+    line-height: 0.92;
     color: var(--text);
-    letter-spacing: -0.01em;
+    letter-spacing: -0.015em;
   }
-
   .hero-name em {
+    display: block;
     font-style: italic;
     color: var(--accent);
   }
-
-  .hero-date {
+  .hero-sub {
     margin-top: 28px;
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
+    font-size: 1.1rem;
     font-weight: 300;
     color: var(--gold);
-    letter-spacing: 0.08em;
+    letter-spacing: 0.1em;
   }
-
-  .hero-line {
+  .hero-divider {
     width: 1px;
-    height: 64px;
+    height: 72px;
     background: linear-gradient(to bottom, var(--accent), transparent);
-    margin: 32px auto 0;
+    margin: 36px auto 0;
   }
 
-  /* ── Ortak section başlığı ── */
-  .section {
-    margin-bottom: 72px;
-    opacity: 0;
-    animation: rise 1s cubic-bezier(.22,1,.36,1) forwards;
-  }
-
-  .section:nth-child(2) { animation-delay: 0.5s; }
-  .section:nth-child(3) { animation-delay: 0.7s; }
-  .section:nth-child(4) { animation-delay: 0.9s; }
-  .section:nth-child(5) { animation-delay: 1.1s; }
-
-  .section-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
+  /* Section label */
+  .label {
+    font-size: 0.62rem;
+    letter-spacing: 0.32em;
     text-transform: uppercase;
     color: var(--accent);
-    margin-bottom: 20px;
+    margin-bottom: 22px;
     display: flex;
     align-items: center;
-    gap: 12px;
+    gap: 14px;
   }
-
-  .section-label::after {
+  .label::after {
     content: '';
     flex: 1;
     height: 1px;
     background: var(--border);
   }
 
-  /* ── Mektup kartı ── */
+  /* Section */
+  .section {
+    margin-bottom: 80px;
+    opacity: 0;
+    animation: rise 1s cubic-bezier(.22,1,.36,1) forwards;
+  }
+  .section:nth-child(2) { animation-delay: 0.4s; }
+  .section:nth-child(3) { animation-delay: 0.65s; }
+  .section:nth-child(4) { animation-delay: 0.85s; }
+  .section:nth-child(5) { animation-delay: 1.05s; }
+
+  /* Letter */
   .letter {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 48px 40px;
+    padding: 52px 44px 44px;
     position: relative;
     overflow: hidden;
   }
-
   .letter::before {
     content: '';
     position: absolute;
@@ -155,139 +163,105 @@
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--accent), transparent);
   }
-
   .letter-greeting {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.6rem;
+    font-size: 1.55rem;
     font-weight: 300;
     font-style: italic;
     color: var(--accent);
-    margin-bottom: 28px;
+    margin-bottom: 32px;
   }
-
-  /* ── Editable paragraf ── */
-  .editable-para {
-    min-height: 90px;
-    padding: 16px 18px;
-    background: var(--input-bg);
-    border: 1px dashed rgba(201,116,138,0.3);
-    border-radius: 12px;
-    margin-bottom: 20px;
+  .letter p {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.15rem;
+    font-size: 1.18rem;
     font-weight: 300;
-    line-height: 1.9;
-    color: var(--text);
-    outline: none;
-    transition: border-color 0.25s, background 0.25s;
-    cursor: text;
-    position: relative;
+    line-height: 2;
+    color: #d8cad5;
+    margin-bottom: 22px;
   }
-
-  .editable-para:focus {
-    border-color: var(--accent);
-    background: rgba(201,116,138,0.06);
-  }
-
-  .editable-para:empty::before {
-    content: attr(data-placeholder);
-    color: var(--muted);
-    font-style: italic;
-    pointer-events: none;
-  }
-
+  .letter p:last-of-type { margin-bottom: 0; }
   .letter-sign {
     font-family: 'Cormorant Garamond', serif;
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     font-style: italic;
     color: var(--gold);
     text-align: right;
-    margin-top: 8px;
+    margin-top: 36px;
   }
 
-  /* ── Dileğin taktı ── */
-  .wishes-grid {
+  /* Wishes */
+  .wishes {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
     gap: 14px;
   }
-
-  .wish-card {
+  .wish {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 16px;
-    padding: 28px 20px 24px;
+    padding: 30px 22px 26px;
     text-align: center;
-    transition: border-color 0.25s, transform 0.25s;
+    transition: border-color 0.3s, transform 0.3s;
   }
-
-  .wish-card:hover {
+  .wish:hover {
     border-color: var(--accent);
-    transform: translateY(-3px);
+    transform: translateY(-4px);
   }
-
-  .wish-icon { font-size: 2rem; margin-bottom: 12px; }
-
+  .wish-icon { font-size: 1.5rem; margin-bottom: 14px; }
   .wish-title {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1.1rem;
-    font-weight: 400;
     color: var(--accent);
-    margin-bottom: 8px;
+    margin-bottom: 10px;
+    font-weight: 400;
   }
-
-  .wish-desc {
-    font-size: 0.84rem;
+  .wish-body {
+    font-size: 0.83rem;
     color: var(--muted);
-    line-height: 1.65;
+    line-height: 1.7;
   }
 
-  /* ── Kişisel not ── */
-  .note-box {
+  /* Extra note */
+  .note {
     background: var(--bg2);
     border: 1px solid var(--border);
     border-radius: 20px;
-    padding: 40px;
+    padding: 44px;
     position: relative;
     overflow: hidden;
   }
-
-  .note-box::before {
+  .note::before {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0;
     height: 1px;
     background: linear-gradient(90deg, transparent, var(--gold), transparent);
   }
-
-  .note-label {
-    font-size: 0.65rem;
-    letter-spacing: 0.3em;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 16px;
+  .note p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.18rem;
+    font-weight: 300;
+    line-height: 2;
+    color: #d8cad5;
   }
 
-  /* ── Footer ── */
+  /* Footer */
   .footer {
     text-align: center;
-    margin-top: 80px;
+    margin-top: 72px;
     padding-top: 40px;
     border-top: 1px solid var(--border);
   }
-
   .footer-rose {
-    font-size: 2.4rem;
+    font-size: 2rem;
     display: block;
     margin-bottom: 16px;
-    animation: pulse 3s ease-in-out infinite;
+    animation: breathe 4s ease-in-out infinite;
   }
-
-  @keyframes pulse {
-    0%, 100% { transform: scale(1); }
-    50%       { transform: scale(1.08); }
+  @keyframes breathe {
+    0%, 100% { transform: scale(1); opacity: 0.9; }
+    50%       { transform: scale(1.1); opacity: 1; }
   }
-
   .footer-text {
     font-family: 'Cormorant Garamond', serif;
     font-size: 1rem;
@@ -295,131 +269,114 @@
     color: var(--muted);
   }
 
-  /* ── Hint banner ── */
-  .edit-hint {
-    background: rgba(201,116,138,0.08);
-    border: 1px solid rgba(201,116,138,0.25);
-    border-radius: 12px;
-    padding: 14px 20px;
-    margin-bottom: 32px;
-    font-size: 0.82rem;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .edit-hint strong { color: var(--accent); }
-
-  /* ── Print ── */
-  @media print {
-    .edit-hint { display: none; }
-    .editable-para { border: none; background: transparent; }
-  }
-
-  /* ── Animasyon ── */
   @keyframes rise {
-    from { opacity: 0; transform: translateY(32px); }
+    from { opacity: 0; transform: translateY(28px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
   @media (max-width: 480px) {
-    .letter { padding: 32px 22px; }
-    .note-box { padding: 28px 22px; }
+    .letter { padding: 32px 22px 28px; }
+    .note   { padding: 30px 22px; }
   }
 </style>
 </head>
 <body>
 
-<!-- Stars -->
 <div class="stars" id="stars"></div>
 
 <div class="page">
 
   <!-- Hero -->
   <header class="hero">
-    <div class="hero-eyebrow">🌹 &nbsp; sana özel &nbsp; 🌹</div>
+    <div class="hero-eyebrow">31 aralik &nbsp;&middot;&nbsp; dogum gunun kutlu olsun</div>
     <h1 class="hero-name"><em>Ecrin</em></h1>
-    <div class="hero-date">31 Aralık &nbsp;·&nbsp; Doğum Günün Kutlu Olsun</div>
-    <div class="hero-line"></div>
+    <div class="hero-sub">sana ozel bir şey</div>
+    <div class="hero-divider"></div>
   </header>
-
-  <!-- Hint -->
-  <div class="edit-hint">
-    ✏️ &nbsp; <span>Alttaki <strong>noktalı kutucuklara tıkla</strong> ve kendi sözlerini yaz — değişiklikler anında görünür.</span>
-  </div>
 
   <!-- Mektup -->
   <section class="section">
-    <div class="section-label">mektup</div>
+    <div class="label">mektup</div>
     <div class="letter">
-      <div class="letter-greeting">Canım Ecrin,</div>
+      <div class="letter-greeting">Ecrin,</div>
 
-      <div
-        class="editable-para"
-        contenteditable="true"
-        data-placeholder="Buraya ilk paragrafı yaz — ona ne söylemek istiyorsun? Ne hissediyorsun bugün..."
-      ></div>
+      <p>
+        Biliyorsun, ben pek böyle şeyler yapmam. Yazmam, göndermem, aramam —
+        hepsini içimde tutarım. Ama bugün bunu yapmak istedim çünkü senin bu günün
+        sadece geçip gitmesini istemedim.
+      </p>
 
-      <div
-        class="editable-para"
-        contenteditable="true"
-        data-placeholder="Birlikte yaşadığınız bir anı anlat, ya da onu sana özel kılan bir şeyi..."
-      ></div>
+      <p>
+        Yılın son günü doğmuşsun. Herkes yeni yıla hazırlanırken, o kalabalıkta,
+        sen de bir yaş daha büyüyorsun. Bu hep bana güzel gelmiştir — sanki yıl seni
+        bırakmadan gitmek istemiyor.
+      </p>
 
-      <div
-        class="editable-para"
-        contenteditable="true"
-        data-placeholder="Son olarak ne dilemek istiyorsun ona? İçinden geldiği gibi yaz..."
-      ></div>
+      <p>
+        Seninle geçirdiğim zamana baktığımda, hep aynı şeyi düşünüyorum:
+        iyi ki varsın. Basit, biliyorum. Ama bazı şeyler en doğru hâliyle sadedir.
+        İyi ki varsın, iyi ki benimsin.
+      </p>
 
-      <div class="letter-sign">— Cihan 🌹</div>
+      <p>
+        Bu yıl sana çok şey dilemek istiyorum ama en çok şunu:
+        hak ettiğin kadar sevildiğini hisset. Her gün değil belki, ama bugün kesinlikle.
+      </p>
+
+      <div class="letter-sign">— Cihan</div>
     </div>
   </section>
 
   <!-- Dilekler -->
   <section class="section">
-    <div class="section-label">dileklerim</div>
-    <div class="wishes-grid">
-      <div class="wish-card">
-        <div class="wish-icon">🌙</div>
+    <div class="label">sana diliyorum</div>
+    <div class="wishes">
+
+      <div class="wish">
+        <div class="wish-icon">*</div>
         <div class="wish-title">Huzur</div>
-        <div class="wish-desc">Her gecen sakin, her sabahın güzel geçsin.</div>
+        <div class="wish-body">İçinde taşıdığın her şey biraz daha hafiflesin bu yıl.</div>
       </div>
-      <div class="wish-card">
-        <div class="wish-icon">✨</div>
-        <div class="wish-title">Mutluluk</div>
-        <div class="wish-desc">Gülüşün hiç eksilmesin, sesin hep bu kadar güzel kalsın.</div>
+
+      <div class="wish">
+        <div class="wish-icon">*</div>
+        <div class="wish-title">Cesaret</div>
+        <div class="wish-body">İsteyip de yapamadığın her şeye bu yıl adım at.</div>
       </div>
-      <div class="wish-card">
-        <div class="wish-icon">🌹</div>
+
+      <div class="wish">
+        <div class="wish-icon">*</div>
         <div class="wish-title">Sevgi</div>
-        <div class="wish-desc">Sevildiğini her an hisset — çünkü sen buna layıksın.</div>
+        <div class="wish-body">Etrafındaki insanlar seni görsün — gerçekten görsün.</div>
       </div>
-      <div class="wish-card">
-        <div class="wish-icon">🕯️</div>
-        <div class="wish-title">Işık</div>
-        <div class="wish-desc">Yeni yılın sana aydınlık, sıcak ve dolu gelsin.</div>
+
+      <div class="wish">
+        <div class="wish-icon">*</div>
+        <div class="wish-title">Zaman</div>
+        <div class="wish-body">Kendine vakit ayır. Hak ediyorsun bunu, ama zaten biliyorsun.</div>
       </div>
+
     </div>
   </section>
 
-  <!-- Kişisel not -->
+  <!-- Son not -->
   <section class="section">
-    <div class="section-label">bir şey daha</div>
-    <div class="note-box">
-      <div class="note-label">🕯️ &nbsp; kalbimden</div>
-      <div
-        class="editable-para"
-        contenteditable="true"
-        data-placeholder="Buraya en özel şeyi yaz — belki hiç söyleyemediklerini, belki sadece bugün söylemek istediklerini..."
-      ></div>
+    <div class="label">son olarak</div>
+    <div class="note">
+      <p>
+        31 Aralık'ta doğmak zor olsa gerek — herkes yılbaşı telaşında,
+        senin günün bazen karışıyor hepsine. Ama bu yıl bari bilmeni istedim:
+        ben biliyorum. Ve önemli.
+      </p>
+      <p style="margin-top: 22px;">
+        Mutlu yıllar Ecrin. Yeni yıl da seninle başlasın.
+      </p>
     </div>
   </section>
 
   <!-- Footer -->
   <footer class="footer">
-    <span class="footer-rose">🌹</span>
+    <span class="footer-rose">&#10022;</span>
     <div class="footer-text">Yılın son günü senin günün — ve bu tesadüf değil.</div>
   </footer>
 
@@ -427,37 +384,33 @@
 
 <script>
   /* Stars */
-  const starContainer = document.getElementById('stars');
-  const COUNT = 160;
-
-  for (let i = 0; i < COUNT; i++) {
+  const sc = document.getElementById('stars');
+  for (let i = 0; i < 180; i++) {
     const s = document.createElement('div');
     s.className = 'star';
-    const size = Math.random() * 2.2 + 0.4;
+    const sz = Math.random() * 2 + 0.4;
     s.style.cssText = `
-      width: ${size}px;
-      height: ${size}px;
-      top: ${Math.random() * 100}%;
-      left: ${Math.random() * 100}%;
-      animation-duration: ${2 + Math.random() * 4}s;
-      animation-delay: ${Math.random() * 5}s;
-      opacity: ${0.1 + Math.random() * 0.5};
+      width:${sz}px; height:${sz}px;
+      top:${Math.random()*100}%;
+      left:${Math.random()*100}%;
+      animation-duration:${2+Math.random()*5}s;
+      animation-delay:${Math.random()*6}s;
     `;
-    starContainer.appendChild(s);
+    sc.appendChild(s);
   }
 
-  /* Persist edits in sessionStorage so a refresh doesn't wipe them */
-  const paras = document.querySelectorAll('.editable-para');
-
-  paras.forEach((el, i) => {
-    const key = 'ecrin_para_' + i;
-    const saved = sessionStorage.getItem(key);
-    if (saved) el.innerHTML = saved;
-
-    el.addEventListener('input', () => {
-      sessionStorage.setItem(key, el.innerHTML);
-    });
-  });
+  /* Shooting stars */
+  function shoot() {
+    const el = document.createElement('div');
+    el.className = 'shoot';
+    el.style.top  = Math.random() * 40 + '%';
+    el.style.left = Math.random() * 70 + '%';
+    el.style.animationDuration = (1.2 + Math.random() * 1.4) + 's';
+    document.body.appendChild(el);
+    setTimeout(() => el.remove(), 3000);
+  }
+  setInterval(shoot, 4000);
+  setTimeout(shoot, 1500);
 </script>
 </body>
 </html>
